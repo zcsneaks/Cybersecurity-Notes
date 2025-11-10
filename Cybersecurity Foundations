@@ -1,0 +1,54 @@
+The Internet - Core Idea
+⦁	A global network of connected networks that lets devices exchange data using standardized protocols (TCP/IP)
+⦁	Data is split into packets. Routers and switches forward packets toward their destination using IP addresses.
+
+How Data Travels (Short Flow)
+1.	Your device sends a request (ex. click a link)
+2.	DNS resolves the domain to an IP
+3.	Data is chunked into packets, labeled with source/destination IP and ports
+4.	Routers forward packets via the most efficient path. Packets may take different routes
+5.	TCP ensures packets arrive and are reassembled in order; the application displays the content.
+
+Key Components
+⦁	Server - Machine that hosts services/data (has IP)
+⦁	Router / Switch - router moves packets between networks; switch connects devices inside a LAN
+⦁	IP address - unique network address
+⦁	DNS - translates domain names to IPs
+⦁	TCP/IP (Transmission Control Protocol/Internet Protocol) - suite of protocols that controls communication
+
+IP Addresses - public vs private & NAT
+⦁	Private ranges (RFC 1918):
+- Class A: 10.0.0.0/8 (10.0.0.0-10.255.255.255)
+- Class B: 172.16.0.0/12 (172.16.0.0-172.31.255.255)
+- Class C: 192.168.0.0/16 (192.168.0.0-192.168.255.255)
+⦁	Public IP: routable on the internet
+⦁	NAT: router translates many private IPs into a public IP (and vise versa), enabling LAN devices to share one public address
+
+DNS (brief)
+⦁	"phone book" for the internet - maps names -> IPs
+⦁	Hierarchy: Root -> TLD -> Authoritative name servers
+⦁	There are 13 logical root server names (A-M); they're widely spread using anycast
+- "13 logical names" = 13 names DNS entry points (A-M); not 13 physical machines
+- anycast: many servers share the same IP; the network routes you to the closes/fastest one (improves speed & reliability)
+
+TCP vs UDP (very short)
+⦁	TCP - connection-oriented, reliable, ordered (3-way handshake: SYN -> SYN/ACK -> ACK). Used for HTTP, SSH
+- handshake: setup before sending data reliably: SYN -> SYN/ACK -> ACK
+- HTTP: protocol for loading websites (port 80/443, uses TCP)
+- SSH: protocol for secure remote login to a computer (port 22, uses TCP)
+⦁	UDP (User Diagram Protocol):
+- connectionless: sends data without a setup handshake (faster, lower overhead)
+- No guaranteed delivery/order (good for speed-sensitive uses)
+- used for DNS, streaming, video calls, some games
+
+Offensive vs Defensive
+⦁	Offensive (Red Team): simulate attackers to find weakness
+⦁	Defensive (Blue Team): monitor, detect, respond
+- SOC: Security Operations Center (team that monitors & responds to threats)
+- IDS: Intrusion Detection System (detects threats, sends alerts)
+- IPS: Intrusion Prevention System (detects and blocks threats)
+- SIEM: collects & analyzes logs/alerts (ex: Splunk, Wazuh)
+- EDR: Monitors endpoints (laptops/servers) for suspicious behavior
+
+Key Cyber Roles
+⦁	SOC Analyst, Incident Responder, Security Engineer, DIgital FOrensics Examiner, Malware Analyst, Penetration Tester, Red Teamer
