@@ -1,0 +1,48 @@
+Networking
+⦁	Networking - devices connected to share information/resources
+⦁	Examples: transport systems, power grids, social networks, postal systems
+
+Internet
+⦁	ARPANET (1960s) = first major network
+⦁	WWW created by Tim Berners-Lee (1989) and runs on top of the internet
+⦁	The internet = many interconnected private and public networks
+
+Device Identification on a Network
+⦁	A device is identified by:
+- IP address: like your name, can change, used for network routing
+- MAC Address: like your fingerprint, hardware ID, unique to your device
+
+IP (Internet Protocol)
+⦁	IPv4 = 4 sections (octets), ex: 192.168.1.1
+⦁	Public IP = faces the internet, assigned by your ISP
+⦁	Private IP = used inside local networks (home/company), not internet routable
+- Class A = 10.0.0.0-10.255.255.255 (Used by large companies)
+- Class B = 172.16.0.0-172.31.255.255 (Used by medium sized companies)
+- Class C = 192.168.0.0-192.168.255.255 (Used by small companies and homes)
+⦁	Cannot have the same IP twice on the same network at the same time
+⦁	IPv6 = huge address space to replace IPv4 shortages, more efficient routing
+⦁	Machines on private IPs can't be targeted directly from the internet without port forwarding, VPN access, or misconfiguration
+- Port forwarding: the router's public IP receives incoming traffic and forwards a specific port (ex. TCP 22) to a chosen private IP on your LAN (ex. router forwards public:2222 -> 192.168.1.50:22
+- VPN / Remote Access: if you run a VPN server on the network (or use a corporate VPN), remote clients join the private network and directly access private IPs as if they were local
+- Misconfiguration / UPnP / DMZ: routers can auto-map ports (UPnP) or place a host in the DMZ exposing it to the internet - this unintentionally makes private hosts reachable
+- Security note (short): any of these methods exposes the private host to the internet - port forwarding and UPnP increase attack surface, so secure and monitor those services
+
+MAC (Media Access Control)
+⦁	Hardware address embedded in network interface card (NIC)
+- NIC = the hardware (physical or virtual) in a device that connects it to a network (ex. Ethernet port or wifi adapter)
+	- Visible in OS as an interface name (Linux: eth0, wlan0); it has the MAC address baked into the interface
+⦁	Format: 'xx.xx.xx.xx.xx.xx' (12 hex characters)
+- First 6 = manufacturer (OUI)
+	- OUI: Organizationally Unique Identifier
+	- You can look up OUI to see vendor (use 'ip link'/'ifconfig' to get the MAC and an online OUI lookup to match map vendor)
+- Last 6 = unique device ID
+⦁	Can be spoofed or "faked" to imitate another device
+⦁	Only usable inside the local network - does not travel across the internet
+
+Ping & ICMP
+⦁	Ping uses ICMP (Internet Control Message Protocol)
+⦁	Checks if a device is reachable & measures response time
+⦁	Terminal command:
+ping 8.8.8.8
+ping google.com
+⦁	Able to be blocked, so no response does not mean the machine is down
