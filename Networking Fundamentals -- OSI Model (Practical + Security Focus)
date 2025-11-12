@@ -1,0 +1,64 @@
+Networking Fundamentals -- OSI Model (Practical + Security Focus)
+
+OSI Model (Open Systems Interconnection)
+⦁	a 7-layer framework that standardizes how devices communicate on a network
+⦁	allows different systems to work together even if built differently
+⦁	encapsulation - data gets wrapped with headers/metadata at each layer before being sent
+
+Layer 1 -- Physical
+⦁	hardware that physically moves bit (1s and 0s)
+⦁	cables, wi-fi signals, network cards, electrical signals
+⦁	no data understanding, only transmission
+⦁	examples: ethernet cables, fiber cables, radio waves, hubs
+
+Layer 2 -- Data Link
+⦁	handles MAC (physical) addressing and local communication
+⦁	adds MAC addresses to frames before sending
+⦁	uses switches (layer 2 devices)
+⦁	security note: can be attacked via MAC spoofing or switch flooding
+
+Layer 3 -- Network
+⦁	handles IP addressing and routing (finding best path)
+⦁	uses routers (layer 3 devices)
+⦁	chooses paths based on:
+- shortest path
+- fastest link
+- most reliable route
+⦁	routing protocols include:
+OSPF
+RIP
+BGP (most important on the internet)
+⦁	security note: targeted by attacks like ICMP floods, routing attacks, IP spoofing
+
+Layer 4 -- Transport
+⦁	Ensures data gets delivered properly (or quickly)
+⦁	Uses TCP or UDP
+⦁	TCP -- Reliable
+- 3-Way Handshake: SYN -> SYN/ACK -> ACK
+- Ensures delivery, resends lost packets, ordered packets
+- slower but accurate
+- used for: HTTP/HTTPS, SSH, FTP, email
+- Security note: can be attacked via SYN floods (DDoS)
+⦁	UDP -- Fast
+- No connection, no reliability fire-and-forget
+- faster, reduces delay
+- used for: streaming, games, VoIP, DNS
+- Security note: can be abused in UDP flood attacks
+
+Layer 5 -- Session
+⦁	creates, maintains, and closes connections between devices
+⦁	adds checkpoints to resume transfers if interrupted
+⦁	sessions are unique -- data can't swap between sessions
+⦁	security note: targeted by session hijacking
+
+Layer 6 -- Presentation
+⦁	translates, formats, compresses, and encrypts data
+⦁	encryption happens here (ex: HTTPS/TLS/SSL)
+⦁	converts data into readable format (JPEG, MP4, JSON, etc)
+⦁	security note: if encryption is stripped, attacker can read traffic (SSL stripping attacks)
+
+Layer 7 -- Application
+⦁	closest to the user -- interfaces and network apps
+⦁	not the app itself. but the protocols apps use
+⦁	protocols include: HTTP, HTTPS, DNS, FTP, SSH, SMTP
+⦁	security note: most hacked layer (phishing, web exploits, login abuse, API abuse)
