@@ -1,0 +1,64 @@
+Network Fundamentals -- Packets, frames, TCP/UDP & Ports
+
+Packets vs Frames
+⦁	Packet = Layer 3 (Network) -> Contains IP addresses, routing info, payload
+⦁	Frame = Layer 2 (Data Link) -> Wraps the packet, adds MAC addresses
+⦁	Encapsulation: Each OSI layer wraps the data with headers like a shipping box inside larger boxes
+⦁	Key packet headers:
+- TTL (Time to Live): Prevents packets from looping forever
+- Checksum: detects corruption
+- Source IP / Destination IP
+⦁	Red-Team Note: Packet crafting tools like Scapy can manipulate headers for spoofing, scanning, and MITM attacks
+
+TCP (Transmission Control Protocol)
+Connection-based, reliable, ordered delivery
+⦁	TCP 3-Way Handshake
+1. SYN -> "Start connection, here's my sequence number"
+2. SYN/ACK -> "Got it, here's mine too"
+3. ACK -> "Confirmed, let's begin"
+⦁	Data Transfer Uses:
+- HTTP/HTTPS (websites)
+- SSH (remote control terminal)
+- FTP (file transfer)
+- SMTP (email)
+⦁	TCP Connection Close
+- FIN = Polite connection close
+- RST = forced reset (usually error or attack)
+⦁	Key TCP Headers
+- Source/Destination Port: identifies the service/application
+- Sequence Number: orders data packets
+- Acknowledgement Number: confirms receipt of packets
+- Checksum: ensures data integrity
+- Flags: SYN, ACK, FIN, RST, etc
+⦁	Red-Team Attack Relevance:
+- SYN Flood (DDoS) -> spams SYN, never finishes handshake, server overloads
+- RST injection -> kills active connections
+- Session hijacking -> steals sequence numbers to impersonate a user
+
+UDP (User Datagram Protocol)
+⦁	Fast connectionless, no delivery guarantee
+⦁	Used for:
+- DNS
+- Video Streaming
+- online games
+- VoIP calls
+⦁	Faster than TCP
+⦁	No handshake, no packet order, data can be lost
+⦁	Red-Team Attack Relevance
+- UDP FLood -> DDoS
+- DNS Amplification -> massive traffic reflection attack
+
+Ports (How services are identified)
+⦁	Range: 0-65535
+⦁	0-1023 = Common, well-known ports
+⦁	Services and their ports:
+- FTP / Port 21: file transfer
+- SSH / Port 22: remote terminal access
+- HTTP / Port 80: unencrypted web traffic
+- HTTPS / Port 443: encrypted web traffic
+- SMB / Port 445: file/printer sharing
+- RDP / Port 3389: remote desktop control
+⦁	Key rule: apps assume default ports unless told otherwise (example: example.com:8080)
+⦁	Red-team insight:
+- Port scanning (Nmap) reveals open services and attack surface
+- NOn-standard ports can hid services but won't stop scanners
