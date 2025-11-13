@@ -1,0 +1,57 @@
+What I did:
+OSI Model on TryHackMe
+Packets, Frames, TCP/UDP, Ports on TryHackMe
+Completed a hands-on practice on how ports are used
+
+What I learned:
+OSI Model is 7 layer process that is how a connection is established.
+1. Physical - transmits raw bits through ethernet cables or wires
+2. Data Link - provides transfer of data through two nodes on the same network
+3. Network - handles IP addressing and routing, finds optimal path here, uses routers
+4. Transport - ensures data gets delivered properly; here is where TCP or UDP comes into play
+5. Session - this is unique and data can not be transferred across different sessions; can be targeted through session hijacking; creates, maintains and closes connections between devices
+6. Presentation - this is where encryption happens (HTTPS/TLS/SSL); translates, formats, compresses data. if encryption is tripped, attacker can read traffic (SSL stripping attacks)
+7. Application - closest step to the user where interfaces are and protocols here include HTTP, HTTPS, DNS, FTP, SSH, and SMTP; this is the most hacked layer
+
+Packets
+- encapsulated in frames
+- carry bits of information
+- works with IP address
+- contain headers
+
+Frames
+works with MAC addresses
+
+Post Mail Analogy for Frames & Packets
+Frames are the envelope and carry packets (letters) with information. The destination address is a header in which is similar to the delivered address on a letter. The source address is like the return address.
+
+Ports
+Act as shipping ports in real life. It is the way data flows through and goes to the right destination
+0-65535
+Common ports:
+HTTP / Port 80: unencrypted web traffic
+HTTPS / Port 443: encrypted web traffic
+SSH / Port 22: remote terminal access
+FTP / Port 21: file transfer
+RDP / Port 3389: remote desktop control
+SMB / Port 445: file/printer sharing
+
+Port Practice Attempt
+The goal of this experiment was to connect to 8.8.8.8 using port 1234. Normally google (8.8.8.8) uses port 443 because it is an encrypted website but this time we want to connect to it using the custom port. 
+When doing a browser request one simply adds a :1234 at the end of the URL to connect through that port. In terms of how this affects security, this could potentially deter some port scanners or automated attacks
+but this is not a security measure on its own
+
+TCP (Transmission Control Protocol)
+SYN -> SYN/ACK -> ACK
+establishes a connection between two computers so that delivery of data is secure and reliable
+downside is that it is slower
+
+UDP (User Datagram Protocol)
+no established connection but faster
+used for VoIP, online gaming, streaming videos, and DNS
+
+Purple team thought:
+There is always going to be ways around obstacles and but first it’s about identifying how they work and their fundamentals. Kind of similar to the best way to outsmart your enemy is to think like them. 
+
+Next step:
+Complete Network fundamentals and start How the Web Works
