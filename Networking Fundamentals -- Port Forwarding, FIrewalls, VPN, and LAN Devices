@@ -1,0 +1,66 @@
+Port Forwarding
+⦁	Allows external devices on the Internet to access specific internal devices (like web services) inside a private network
+⦁	Configured on the router -- tells it which internal IP + port incoming traffic should be sent to
+⦁	Example: 82.62.51.70:80 -> forwards to 192.168.1.10:80
+⦁	Firewalls control whether the traffic is allowed; port forwarding can expoe private systems or admin panels to the internet
+⦁	Red-Team Insight:
+⦁	Attackers scan public IPs for open ports (via Nmap) to find services exposed via port forwarding. Misconfigured port forwarding can expose private systems or admin panels to the internet
+
+Firewalls
+⦁	Control which traffic can enter or leave a network
+⦁	Rules based on:
+⦁	Source/destination IP
+⦁	Port number
+⦁	Protocol (TCP/UDP)
+⦁	Like border security -- decides what gets in or out
+⦁	Stateless
+⦁	Uses fixed rules to allow/block packets
+⦁	fast, simple
+⦁	less intelligent; easier to bypass
+⦁	Stateful
+⦁	analyzes connection states & traffic patterns
+⦁	smarter, adaptive
+⦁	uses more system resources
+⦁	Red-Team Insight:
+⦁	attackers often test firewall rules by sending packets with odd flags (ex. XMAS scans) or manipulate traffic timing to infer open prots behind firewalls
+
+VPN (Virtual Private Network)
+⦁	Creates an encrypted tunnel between devices across the internet
+⦁	Allows private communication between remote networks
+⦁	Used to connect branch offices, secure remote users, or mask identity
+⦁	Encryption ensures only devices with matching keys can read data
+⦁	VPN technologies
+⦁	PPP (Point-to-Point Protocol)
+⦁	provides authentication & encryption base
+⦁	not routable alone
+⦁	PPTP (Point to Point Tunneling Protocol)
+⦁	Easy to setup but weak encryption
+⦁	IPsec (Internet Security Protocol)
+⦁	Strong encryption using IP layer
+⦁	Secure, harder to configure
+⦁	Benefits:
+⦁	Privacy: hides traffic from ISP & public WI-Fi snoopers
+⦁	Anonymity: masks your real IP
+⦁	Remote Access: securely links different offices
+⦁	Red-Team Insight:
+⦁	VPNs protect traffic -- but if compromised, attackers gain internal network-level access. Misconfigured VPNs can also expose internal IPs
+
+LAN Networking Devices
+⦁	Router
+⦁	Connects different networks (LAN <-> WAN)
+⦁	Uses routing protocols (OSPF, RIP, BGP) to find best paths
+⦁	Works at layer 3 (network) of OSI Model
+⦁	Handles port forwarding and firewall rules
+⦁	Red-Team Insight:
+⦁	Router misconfigurations or default credentials can give full internal network control. Attackers exploit outdates firmware or open admin panels
+
+Switch (LAN Device)
+⦁	Connects multiple devices inside a LAN
+⦁	Operates at layer 2 (data link), forwarding frames using MAC addresses
+⦁	Layer 3 switches can also handle IP routing (acts partly like a router)
+
+VLAN (Virtual Local Area Network)
+⦁	Splits one physical switch into multiple virtual networks, improving security and segmentation
+⦁	Devices in different VLANs can't directly talk without a router or firewall
+⦁	Red-Team Insight:
+⦁	Attackers can use VLAN hopping techniques (like double tagging) to move between separated networks if VLANs are misconfigured
