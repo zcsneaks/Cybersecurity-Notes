@@ -1,0 +1,63 @@
+What is DNS?
+⦁	DNS (Domain Name System) maps human-readable names (like tryhackme.com) to IP addresses (104.26.10.229), so we don't have to remember numbers
+⦁	Works like a phone book / contacts app for the internet
+
+Domain Hierarchy
+1.	TLD (Top-Level Domain)
+- Right-most part of a domain.
+	- Ex: tryhackme.com --> TLD = .com
+- Types:
+	- gTLD: generic (.com, .org, .net, .online, etc.)
+	- ccTLD: country-code (.uk, .ca, .jp, etc)
+2.	Second-Level Domain (SLD)
+- The main name you register.
+	- Ex: tryhackme.com --> SLD = tryhackme
+- Label rules: max 63 characters, only a-z, 0-9, and - (no starting/ending hyphens)
+3.	Subdomain
+- Sits to the left of the SLD
+	- Ex: admin.tryhackme.com --> admin = subdomain
+	- Can chain: Jupiter.servers.tryhackme.com
+- FQDN (full domain) total length must be < 254 characters
+
+Common DNS Record Types
+⦁	A record
+	- Maps names --> IPv4 Address
+	- Ex: website.thm --> 10.10.10.10
+⦁	AAAA Record
+	- Maps name --> IPv6 Address
+	- Ex: example.com --> 2606:4700:20::681a:be5
+⦁	CNAME Record (canonical name)
+	- Name --> another domain name, not an IP
+- Ex: shop.website.thm --> shops.myshopify.com
+- A second DNS lookup then resolves shops.myshopify.com to an IP
+⦁	MX Record (Mail Exchanger)
+- Tells which server(s) handle email for a domain.
+- Includes a priority number (lower = tried first)
+- Ex: website.thm --> 30 alt4.aspmx.l.google.com
+⦁	TXT Record
+- Free-form text data. Common uses:
+	- SPF, DKIM, DMARC (anti-spam / anti-spoofing)
+	- Domain ownership verification
+
+DNS Resolution Flow (How a Query is Resolved)
+1.	Client cache check
+- Your OS/Browser checks its local DNS cache first
+2.	Recursive Resolver (usually ISP or custom like 8.8.8.8)
+- If not cached locally, query is sent to a recursive DNS server
+- If the resolver has it cached, it replies directly
+3.	Root DNS servers
+- If not cached, resolver asks a root server
+- Root server says: "For .com domains, go ask these TLD servers."
+4.	TLD Server (.com, .net, .org, etc)
+- TLD server says; "For tryhackme.com, ask these authoritative name servers"
+5.	Authoritative Name Server
+- Holds the actual DNS records for the domain (A, MX, CNAME, etc)
+- Sends back the answer to the recursive server --> recursive caches it --> returns it to your device
+6.	TTL (Time to Live)
+- Each DNS record has a TTL (in seconds) that tell show long it can be cached
+- Caching speeds things up and reduces DNS traffic
+
+Red-Team Mindset Extras
+⦁	DNS is an intel goldmine: Attackers perform subdomain enumeration, zone transfers (if misconfigured), and read TXT records for tech stack clues
+⦁	DNS cache poisoning / spoofing can redirect users to malicious IPs while still showing the correct domain name in the browser
+⦁	Misconfigured DNS (bad MX/TXT/SPF) can allow email spoofing and phishing that looks legit
