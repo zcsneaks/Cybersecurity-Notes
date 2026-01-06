@@ -1,0 +1,26 @@
+HTTP(S)
+⦁	HTTP (HyperText Trasnfer Protocol) is the set of rules used for communication between web servers transmitting data
+⦁	HTTPS (HyperText Transfer Protocol Secure) is the secure, encrypted version of HTTP
+
+HTTP Status Codes
+⦁	400-499 errors are when the error is on the client side
+⦁	500-599 errors are when the error is on the server side
+⦁	403 - Forbidden error is when you are blocked from a site
+⦁	404 - Page Not Found is when the site doesn't exist
+⦁	503 - Service Unavailable is when the site is down because of maintenance or it is overloaded
+
+Headers
+⦁	User-Agent tells the web server what browser is being used
+⦁	Content-Type tells the browser what type of data is being returned
+⦁	Host tells the web servers which site is being requested
+
+Cookies
+⦁	Set-Cookie is used to save cookies on the client's computer
+⦁	We can see the cookies using Developer Mode in the browser. Then we go to the Network section and we can see the list of request our browser has made along with their status codes.
+
+Making Requests
+⦁	We would typically use tools like Postman or cURL to make requests like GET, POST, PUT and DELETE. We can also see the responses.
+⦁	In this room we used requests like the ones mentioned previously to get the responses we needed. 
+⦁	For example, we used a POST request on a /login page with a username and password to login.
+⦁	Also used a DELETE request on a user to delete their account.
+⦁	Requested a name change to 'admin' by using a PUT request on /user/2
