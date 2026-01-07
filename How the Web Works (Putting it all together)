@@ -1,0 +1,23 @@
+Components of the Web
+⦁	CDN (Content Delivery Network) hosts static files and speeds up a clients visit to a website. It basically hosts the static files like JavaSciprt, CSS, Images, Videos, etc and hosts them across thousands of servers all over the world and the user connects to the nearest server.
+⦁	Load balancers perform "health checks" to make sure hosts are still alive. If the server doesn't respond it will stop sending traffic to it until it responds.
+⦁	WAF (Web Application Firewall) help defend websites by analyzing requests for common attack techniques.
+
+How Web Servers Work
+⦁	Web server software uses "virtual hosts" to host multiple sites.
+⦁	Static content doesn't change. These are things like images, videos, JavaScript, CSS, etc
+⦁	Dynamic content can change. For example, on a blog the home page will update with the most recent blog. 
+⦁	The client can't see the backend code.
+
+How a Request to a Website Works
+1.	Request website in your browser
+2.	Check local cache for IP address
+3.	Check your recursive DNS Server for IP address
+4.	Query root server to find authoritative DNS server
+5.	Authoritative DNS server advises the IP address for the website
+6.	Request passes through a WAF (Web Application Firewall)
+7.	Request passes through a Load Balancer
+8.	Connects to webserver on port 80 or 443
+9.	Web server receives GET request from client
+10.	Web application talks to database
+11.	Your browser renders the HTML into a viewable website
