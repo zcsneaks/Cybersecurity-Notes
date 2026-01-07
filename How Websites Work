@@ -1,0 +1,52 @@
+How websites work
+⦁	Front end - what your browser sees and displays
+⦁	Back end - a server processes your request and returns responses
+
+HTML Lab
+Learned that HTML is basically the name for code behind a website. Here are some codes:
+⦁	<img src='img/filename.jpg'>
+⦁	<html> is the header
+⦁	<h1> defines a large heading
+In the lab the code for one of the images on the website was broken and didn't have the correct routing name so we fixed that so the image would display on the front end properly. We then added another image by using the img code above and routing it to the correct png file.
+
+JavaScript Lab
+⦁	Loaded in to page source with <script> tags or it can be included manually with src attribute <script src="/location/of/javascript_file.js"></script>
+Here is the code I started out with:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TryHackMe Editor</title>
+    </head>
+    <body>
+        <div id="demo">z!</div>
+        <script type="text/javascript">
+            // add your JavaScript here
+        </script>
+    </body>
+</html>
+
+Here is the code I finished with:
+<html>
+    <head>
+        <title>TryHackMe Editor</title>
+    </head>
+    <body>
+        <div id="demo">Hack the Planet</div>
+        <button onclick='document.getElementById("demo").innerHTML = "Button Clicked";'>Click Me!</button>
+        <script type="text/javascript">
+           
+        </script>
+    </body>
+</html>
+
+⦁	I replaced the original text that appeared on the screen which was 'z!' with 'Hack the Planet' to show how changing the source code changes what we see on the screen
+⦁	Then I added a clickable button underneath it using the code:
+        <button onclick='document.getElementById("demo").innerHTML = "Button Clicked";'>Click Me!</button>
+        <script type="text/javascript">
+
+Sensitive Data Exposure Lab
+⦁	I had gone into the websites page source code and found the web developer forgot to remove login credentials which showed a username and login that could be used to access the site and cause a breach of security.
+
+HTML Injection Lab
+⦁	a HTML Injection is when a user can enter code into a query on a website thus changing the way a website is shown and altering it externally. Think of when a website asks you your name. If the website is undefended they could enter malicious code into that textbox and embed a malicious link or something.
+⦁	So instead of putting my name I put this HTML code -> <a href="http://hacker.com">Zach</a>
