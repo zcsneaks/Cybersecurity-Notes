@@ -1,0 +1,20 @@
+My First Commands on Linux
+⦁	echo Hello - repeated back to me Hello
+⦁	whoami - told me the user i was logged in as
+
+Interacting with the Filesystem (Lab)
+1.	Started off with figuring out the different files on the system by using ls command. This told me 4 folder (folder1, folder2, folder3, folder4)
+2.	3 of them didn't have anything in them but folder4 had a file called note.txt
+3.	I used command cat note.txt while in the folder4 terminal and the file contents read 'Hello World!'
+4.	Then, I used the command 'pwd' to find out where I was in the file system and it told me I was in /home/tryhackme/folder4
+IMPORTANT: cd takes us back to the home directory when we are within a file
+
+Searching for Files
+⦁	We can use command 'find -name filename.file' to directly search for a file if we know the name of it
+⦁	We can use command 'grep "whatwearesearchingfor" access.log to search access.log for a specific word or phrase
+⦁	These commands are better than ls and cd and cat because they are more direct and intuitive
+
+Intro to Shell Operators
+⦁	the & command is used to run commands in the background. useful for actions that may take a while like copying large files
+⦁	the command && is used to combine more than one command in a string. the first one must work however for the next ones to work
+⦁	In the Linux terminal I was messing around and created a file called welcome with the contents in it that said Hey by using the command 'echo Hey > welcome'. Then I added another word underneath it by using command 'echo People >> welcome'
