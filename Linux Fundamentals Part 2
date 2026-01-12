@@ -1,0 +1,39 @@
+Accessing the Linux Machine using SSH
+⦁	Target IP: 10.64.148.142
+⦁	To load up AttackBox we use start the Terminal in the TryHackMe site and then start AttackBox.
+⦁	Once we're in, we use command 'ssh tryhackme@ipaddress' and then open up a terminal and do the same. We use the target IP address.
+⦁	The tryhackme login they gave us was username:tryhackme and password:tryhackme
+⦁	I was confused at first because when I went to put in password it seemed as if the terminal wasn't responding but that's just to keep it hidden in case anyone was watching. Makes sense.
+
+Intro to Flags and Switches (And Lab)
+⦁	We can use the man command to read the manual pages if we wanted to which would give more info.
+⦁	We can use the -a argument (short for all) to get access to more files and folders. In the lab a normal ls only presents us with 4 options but when we use ls -a 8 options then present themselves
+⦁	Then we have the --help command which offers as a quick reference and then the -man argument which offers a full comprehensive guide.
+⦁	-h argument is used to display the output in a human-readable way.
+
+Filesystem Interaction (And Lab)
+⦁	Commands used:
+touch - create file
+mkdir - create a folder
+cp - copy a file
+mv - move a file or folder
+rm - remove a file or folder
+file - determine a type of file
+⦁	For the lab I created a new file called "newnote" by doing touch newnote
+⦁	I then checked the file type of unknown1 and it was ASCII Text
+⦁	Then I analyzed the contents of myfile by using cat myfile and the result was a flag called THM{FILESYSTEM}
+
+Permissions 101 (And Lab)
+⦁	Using ls -lh lists the permissions of all files in the director. The first 3 columns are the most important as they list "read, write, and execute"
+⦁	There is a huge difference between the following 'switch user' commands.
+- su user2 switches us to have user2s permissions but still keeps us in the previous user's directory
+- su -l user2 switches us to have user2's permissions and automatically have their home directory as well
+⦁	On our current directory when we used ls -lh it lists the 'important' file as being owned by user2
+⦁	I switched the user from tryhackme to user2 using 'su user2' and then I had permissions to command 'cat important' to get the flag 'THM{SU_USER2}'
+
+Common Directories
+⦁	/etc is a commonplace location to store system files and one of the most important directories
+⦁	/var. short for variable data, is another main root folder found on an install and is frequently accessed by services running on the system
+- We can expect to find log files in /var/log
+⦁	/tmp is similar to how RAM works in computers
+⦁	/root is the home directory of the root user
