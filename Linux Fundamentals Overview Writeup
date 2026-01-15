@@ -1,0 +1,17 @@
+1/15/2026
+Linux Fundamentals Module
+I did several labs and took notes on them and what I did throughout. 
+I learned about the basics of Linux and commands to edit text, transfer files, and look through logs for flags and information.
+A blue team thought is how I used commands like ^Z to stop processes. This could be used for DDoS attacks if there was some sort of breach in the firewall. 
+A red team thought is how I could look through access logs to find out what a certain individual may have looked at and essentially use that against them. 
+
+What I did Well In
+⦁	Logging in with SSH to connect to the TryHackMe server. Command 'ssh tryhackme@MACHINE_IP'
+⦁	Using nano and cat to read flags as well as the basics like ls, cd and pwd
+
+What I Struggled In:
+⦁	SCP File transfers. Remember, SOURCE to DESTINATION
+- Ex: 'scp tryhackme@12.6.167.188:/home/tryhackme/task3.txt task3.txt' securely transferred a file from one machine to another
+⦁	Crontab command issues were a struggle for me because I didn't realize that @reboot could replace the * * * * * * format but now that I know that this is helpful.
+
+Next room I will be doing is the Windows Fundamentals room and I will employing a lot of the same note taking and active learning based strategies as I feel I truly grasped a majority of the concepts in Linux. I will be reviewing Linux module this weekend to build that foundation to move on to harder concepts.
