@@ -1,0 +1,77 @@
+Deploying Your Linux Machine
+Like before we connect to the terminal using command 'ssh tryhackme@10.67.167.85'. Different IP address this time since we're in a different room.
+
+Terminal Text Editors
+There are 2 main text editors.
+Nano: this one is simple and can do all the basic things you need it to
+VIM: much more advanced text editor that we will learn on later. but this will be great for leveling up our Linux capabalities
+To create or edit a file using nano, we use nano filename and then it will open up a textbox where we can put in text with a list of common commands at the bottom. To close the command we use ^X.
+
+Serving Files From Your Host - WEB
+scp (short for secure copy) is used for securely copying files
+the command goes in the way of SOURCE to DESTINATION
+Example code: scp tryhackme@10.67.170.186:/home/tryhackme/textfile.txt textfile
+In order to transfer files we have to connect to our Terminal's web server called HTTP Server.
+We do this by executing command 'python3 -m http.server'
+Then we have to open a new terminal in order to execute our commands there.
+When we are done using this server we use ^C to close it.
+Now, in that new terminal if we knew our file's web address we could use command 'wget filelink'
+Interactive Lab
+I made sure I was connected to instance 10.67.170.186
+Then I used Python 3's "HTTPServer" module to start a web server on instance 10.67.170.186
+I then opened a new terminal on the root IP and downloaded a file using command 'wget http://10.67.170.186:8000/.flag.txt'
+Then I experimented around a bit and made files on the first instance using nano and then downloaded them onto the second instance using the process I just talked about.
+
+Processes 101
+We can use command 'ps' to view the running processes from our user's session
+We can use ps aux to see processes run by other users and those that don't run from a session.
+The 'top' command is very useful for seeing the real-time statistics about the processes running on the system and it constantly updates.
+If we wanted to terminate a process, we would use command 'kill PID'
+so if the PID was 1337 we would do 'kill 1337'
+Here are some signals for how exactly to kill a process:
+SIGTERM - kills the process but allows it do some cleanup tasks beforehand
+SIGKILL - kills the process and doesn't do any cleanup
+SIGSTOP - stops a process
+Backgrounding & Foregrounding
+backgrounding is when processes run in the background and you can't directly see them in the terminal
+foregrounding is when a process runs in the foreground where you can see it like with echo commands
+for example we can do 'echo "Hello!"' and the terminal will respond in the foreground with "Hello!" but if we do 'echo "Hello!" &' then it responds with [1] 3751 which is the ID of the echo process
+Backgrounding is very helpful for copying files and things that take up time so that we can do other commands in the foreground
+If we wanted to stop a process we could do 'Ctrl + Z' or '^Z'
+If we were to launch  process where the previous ID was "300" the ID of this next process would be "301"
+If we wanted to stop the service "myservice" we would use command 'systemctl stop myservice'
+If we wanted to start the service "myservice" on the bootup of the system we would use command 'systemctl enable myservice'
+We use command 'fg' to bring a previously backgrounded process to the foreground
+
+Maintaining Your System: Automation
+We can interact with the cron process via the use of 'crontabs' command. This process is started during bootup.
+Here are the 6 specific values step-by-step
+MIN - what minute to execute at
+HOUR - what hour to execute at
+DOM - what day of the month to execute at
+MON - what month of the year to execute at
+DOW - what day of the week to execute at
+CMD - the actual command to be executed
+If we wanted to backup "cnmatic"'s "Documents" every 12 hours we would use this command:
+0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/
+If we don't want to provide a value for one of the fields we use an *
+Crontabs can be edited by using 'crontab -e'
+Important to note that crontabs can also have a special case where the 6 values aren't mentioned and these are when it says @reboot which means the process occurs every time at reboot.
+
+Maintaining Your System: Package Management
+We can add additional repositories by using the 'add-apt-repository' command
+Normally, we use the 'apt' command to install software but it has a suite of tools that we can use to manage sources and also remove software.
+When adding software, the integrity of what we download is guaranteed by GPG (Gnu Privacy Guard) keys.
+So, if we are adding the GPG key for the developers of Sublime Text 3 this is what we would do:
+Command 'wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -' to download and use the apt-key to trust it
+Now we can add Sublime Text 3's repository to our apt sources list. It is good to have a separate file for every different community/3rd party repository we add
+We create a file names sublime-text.list in /etc/apt/sources.list.d
+Now we use Nano or a text editor to add & save the Sublime Text 3 repository into this newly created file
+Now we need to update apt to recognize this new entry by doing 'apt-update'
+Now we can proceed to install the software we have trusted and added by using 'apt install sublime-text'
+Removing packages is just and easy and is done by using the 'add-apt-repository --remove ppa:PPA_Name/ppa' command or by manually deleting the file that we previously added to. Once removed we can just use apt remove [software-name-here] or in this case apt remove sublime-text
+
+Maintaining Your System: Logs
+In our AttackBox server, we have navigated to /var/log and we see that apache2 is running.
+I look into it and some interesting log files could be access.log and error.log. These could be great for diagnosing performance issues or an intruder's activity
+In the Lab, I accessed access.log.1 and found a user with the IP 10.9.232.211 access catsanddogs.jpg on May 4th 2021 at 18:18.
